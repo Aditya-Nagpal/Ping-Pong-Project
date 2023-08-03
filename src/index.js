@@ -17,6 +17,13 @@ var rodLeft = parseFloat(
 var rodRight = parseFloat(
   window.getComputedStyle(Rod1, null).getPropertyValue("right")
 );
+var t = parseFloat(
+  window.getComputedStyle(Ball, null).getPropertyValue("top")
+);
+var b = parseFloat(
+  window.getComputedStyle(Ball, null).getPropertyValue("bottom")
+);
+console.log(t,b);
 var Rod1Score = 0;
 var maxRod1Score = 0;
 var Rod2Score = 0;
@@ -43,7 +50,7 @@ window.addEventListener("keydown", function (event) {
 ResetButton.addEventListener("click", resetGame);
 
 function moveRodLeft() {
-  if (rodLeft <= -5) {
+  if (rodLeft <= -2) {
     return;
   }
   rodLeft -= rodStep;
@@ -55,7 +62,7 @@ function moveRodLeft() {
 }
 
 function moveRodRight() {
-  if (rodRight <= -5) {
+  if (rodRight <= -2) {
     return;
   }
   rodLeft += rodStep;
@@ -90,6 +97,7 @@ function moveBall() {
   let ballRight = parseFloat(
     window.getComputedStyle(Ball, null).getPropertyValue("right")
   );
+  console.log(ballTop,ballBottom,ballLeft,ballRight);
   let leftDirFlag;
   let rightDirFlag;
   let topDirFlag;
@@ -122,15 +130,17 @@ function moveBall() {
       topDirFlag *= -1;
       bottomDirFlag *= -1;
       Rod1Score += points;
-    } else if (ballTop < 16) {
+      console.log(ballTop,ballBottom);
+    } else if (ballTop < 24) {
       Rod2Won(Interval);
       resetRound();
     }
-    if (ballBottom <= 26 && ballLeft >= rodLeft && ballRight >= rodRight) {
+    if (ballBottom <= 25 && ballLeft >= rodLeft && ballRight >= rodRight) {
       topDirFlag *= -1;
       bottomDirFlag *= -1;
       Rod2Score += points;
-    } else if (ballBottom < 17) {
+      console.log(ballTop,ballBottom);
+    } else if (ballBottom < 24) {
       Rod1Won(Interval);
       resetRound();
     }
@@ -170,12 +180,13 @@ function resetRound() {
   resetRoundScores();
   hasRoundStarted = false;
   RoundCard.style.display = "flex";
+  console.log(Ball.getBoundingClientRect().top);
 }
 
 var BallInitialTopPosition1 = 25;
-var BallInitialTopPosition2 = 693.6;
-var BallInitialBottomPosition1 = 694.6;
-var BallInitialBottomPosition2 = 26;
+var BallInitialTopPosition2 = 688.2;
+var BallInitialBottomPosition1 = 688.2;
+var BallInitialBottomPosition2 = 25;
 var BallInitialHorPosition = 755;
 var RodInitialHorPosition = 643;
 

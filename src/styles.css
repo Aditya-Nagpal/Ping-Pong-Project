@@ -1,12 +1,22 @@
-html {
-    background-image: url("https://img.freepik.com/free-photo/plain-smooth-green-wall-texture_53876-129746.jpg?w=360");
-    background-size: cover;
+  html{
     overflow: hidden;
   }
-  
+
   body {
     margin: 0;
     font-family: monospace;
+  }
+
+  body:before {
+    content:"";
+    position:fixed;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    z-index:-1; 
+    background:#D8D8D8;
+    background-color: black;
   }
   
   .score-card {
@@ -29,7 +39,7 @@ html {
     top: 298px;
     left: 568px;
     box-shadow: 0 3px 10px 4px rgb(182, 176, 176);
-    background-image: linear-gradient(red, orange);
+    background-image: linear-gradient(to right, #00b09b, #96c93d);
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -74,21 +84,34 @@ html {
   
   #rod1 {
     top: 0;
-    background-color: darkmagenta;
+    background-image: linear-gradient(to right, #FFD194, #D1913C);
   }
   
   #rod2 {
-    bottom: 1px;
-    background-color: darkorange;
+    bottom: 0px;
+    background-image: radial-gradient( circle farthest-corner at 22.4% 21.7%, rgba(4,189,228,1) 0%, rgba(2,83,185,1) 100.2% );
   }
   
   #ball {
     position: absolute;
     left: 755px;
-    bottom: 26px;
+    bottom: 25px;
     height: 26px;
     width: 26px;
     border-radius: 50%;
-    background-color: darkred;
+    animation: spinBall 0.13s linear infinite;
+    box-shadow: inset 0 0 18px #fff,
+        inset 6px 0 18px violet,
+        inset -6px 0 18px #0ff,
+        inset 6px 0 30px violet,
+        inset -6px 0 30px #0ff,
+        0 0 18px #fff, -4px
+        0 18px violet, 4px 0 18px #0ff;
   }
+
+  @keyframes spinBall {
+    100% {
+        transform: rotate(360deg);
+    }
+}
   
